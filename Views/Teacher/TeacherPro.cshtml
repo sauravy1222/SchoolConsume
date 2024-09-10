@@ -1,0 +1,41 @@
+﻿@model SMSWEBAPI.Models.Teacher
+
+@{
+    ViewData["Title"] = "Teacher Details";
+}
+
+<h2>Teacher Details</h2>
+
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">Teacher Information</h4>
+
+        <dl class="row">
+            
+
+            <dt class="col-sm-3">First Name</dt>
+            <dd class="col-sm-9">@Model.FirstName</dd>
+
+            <dt class="col-sm-3">LastNamedt>
+            <dd class="col-sm-9">@Model.LastName</dd>
+
+            <dt class="col-sm-3">Qualification</dt>
+            <dd class="col-sm-9">@Model.Qualification</dd>
+
+            
+
+            <dt class="col-sm-3">SubjectId</dt>
+            <dd class="col-sm-9">@Model.SubjectId</dd>
+
+            <dt class="col-sm-3">Email</dt>
+            <dd class="col-sm-9">@Model.Email</dd>
+
+            <dt class="col-sm-3">HireDate</dt>
+            <dd class="col-sm-9">@Model.HireDate</dd>
+
+          
+        </dl>
+
+        <a asp-action="Index" class="btn btn-primary">Back to List</a>
+    </div>
+</div>
