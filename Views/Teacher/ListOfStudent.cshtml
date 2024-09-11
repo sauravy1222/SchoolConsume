@@ -1,0 +1,50 @@
+﻿@model List<SMSWEBAPI.Models.Student>
+
+<form method="post" >
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Select PS</th>
+                <th scope="col">Username</th>
+                <th scope="col">Firstname</th>
+                <th scope="col">Lastname</th>
+                <th scope="col">Middlename</th>
+                <th scope="col">DOB</th>
+                <th scope="col">Gender</th>
+                <th scope="col">Address</th>
+                <th scope="col">Phone</th>
+                <th scope="col">Email</th>
+                <th scope="col">EnrollDate</th>
+                <th scope="col">ClassId</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var stu in Model)
+            {
+                <tr>
+                    <td>
+                        <input type="checkbox" name="selectedStudents" value="@stu.userid" />
+                    </td>
+                    <td>@stu.username</td>
+                    <td>@stu.FirstName</td>
+                    <td>@stu.LastName</td>
+                    <td>@stu.MiddleName</td>
+                    <td>@stu.DOB.ToString("yyyy-MM-dd")</td>
+                    <td>@stu.gender</td>
+                    <td>@stu.Address</td>
+                    <td>@stu.Phone</td>
+                    <td>@stu.Email</td>
+                    <td>@stu.EnrollDate.ToString()</td>
+                    <td>@stu.ClassId</td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="12">
+                    <input type="submit" class="btn btn-primary" value="Add To Present" />
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+</form>
