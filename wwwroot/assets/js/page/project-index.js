@@ -415,7 +415,7 @@ $(function() {
                     }
                 },
             },
-        }
+        },
 
         var apex-timeline - chart = new ApexCharts(
             document.querySelector("#apex-timeline-chart"),

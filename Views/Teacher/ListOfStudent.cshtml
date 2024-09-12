@@ -1,6 +1,7 @@
 ﻿@model List<SMSWEBAPI.Models.Student>
 
-<form method="post" >
+<!-- Form to display students and select -->
+<form id="attendanceForm">
     <table class="table">
         <thead>
             <tr>
@@ -23,7 +24,7 @@
             {
                 <tr>
                     <td>
-                        <input type="checkbox" name="selectedStudents" value="@stu.userid" />
+                        <input type="checkbox" name="selectedStudents" value="@stu.userid" data-classid="@stu.ClassId" />
                     </td>
                     <td>@stu.username</td>
                     <td>@stu.FirstName</td>
@@ -42,9 +43,46 @@
         <tfoot>
             <tr>
                 <td colspan="12">
-                    <input type="submit" class="btn btn-primary" value="Add To Present" />
+                    <input type="button" class="btn btn-primary" value="Add To Present" onclick="submitAttendance()" />
                 </td>
             </tr>
         </tfoot>
     </table>
 </form>
+
+<!-- JavaScript to handle attendance submission -->
+<script type="text/javascript">
+    function submitAttendance() {
+        var selectedStudents = [];
+        var checkboxes = document.querySelectorAll('input[name="selectedStudents"]:checked');
+
+        checkboxes.forEach(function (checkbox) {
+            var studentId = checkbox.value;
+            var classId = checkbox.getAttribute('data-classid');
+            selectedStudents.push({
+                StudentId: studentId,
+                ClassId: classId,
+                Status: true // Marking as present
+            });
+        });
+
+        if (selectedStudents.length > 0) {
+            // Convert the fetch call to jQuery Ajax
+            $.ajax({
+                url: '/api/StudentAttendance',
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify(selectedStudents),
+                success: function (response) {
+                    alert('Students added to present list.');
+                },
+                error: function (xhr, status, error) {
+                    console.error('Error:', xhr.responseText || error);
+                    alert('Failed to add students to present list.');
+                }
+            });
+        } else {
+            alert('Please select at least one student.');
+        }
+    }
+</script>
